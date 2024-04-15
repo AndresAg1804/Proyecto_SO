@@ -1,6 +1,6 @@
 all: procesoPrincipal
 
-procesoPrincipal: procesoPrincipal.c procesoMemoria procesoDisco
+procesoPrincipal: procesoPrincipal.c procesoMemoria procesoDisco procesoCPU
 	@gcc procesoPrincipal.c -o procesoPrincipal
 
 
@@ -10,6 +10,8 @@ procesoMemoria: procesoMemoria.c
 procesoDisco: procesoDisco.c
 	@gcc procesoDisco.c -o procesoDisco
 
+procesoCPU: procesoCPU.c
+	@gcc procesoCPU.c -o procesoCPU
 
 clean: 
 	@rm procesoDisco procesoMemoria procesoPrincipal

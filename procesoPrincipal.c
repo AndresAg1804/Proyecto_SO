@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
             exit(EXIT_FAILURE);
         }
 
-        // Ejecutar el programa procesoMemoria
+        
         char *opcion = argv[1];
         if (strcmp(opcion, "Disco") == 0) {
             if(argc==3){
@@ -92,11 +92,11 @@ int main(int argc, char *argv[]) {
         char buffer[4096];
         ssize_t bytes_leidos;
         while ((bytes_leidos = read(pipefd[0], buffer, sizeof(buffer))) > 0) {
-            // Imprimir la salida del proceso hijo
+            
             write(STDOUT_FILENO, buffer, bytes_leidos);
         }
 
-        // Esperar a que el hijo termine
+        
         wait(NULL);
     }
 
