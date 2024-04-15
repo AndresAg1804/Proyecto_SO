@@ -78,7 +78,16 @@ int main(int argc, char *argv[]) {
             }
 
         }else if (strcmp(opcion, "CPU") == 0) {
-
+            if(argc==2){
+                execl("./procesoCPU", "procesoCPU", NULL);
+                perror("execl");
+                exit(EXIT_FAILURE);
+            }else if (argc==3){
+                char *pid = argv[2];
+                execl("./procesoCPU", "procesoCPU", pid, NULL);
+                perror("execl");
+                exit(EXIT_FAILURE);
+            }
 
         }else{
             printf("Faltan atributos");

@@ -11,7 +11,7 @@ procesoDisco: procesoDisco.c
 	@gcc procesoDisco.c -o procesoDisco
 
 procesoCPU: procesoCPU.c
-	@gcc procesoCPU.c -o procesoCPU
+	@gcc procesoCPU.c -o procesoCPU -lrt -w
 
 clean: 
-	@rm procesoDisco procesoMemoria procesoPrincipal
+	@rm procesoDisco procesoMemoria procesoPrincipal procesoCPU

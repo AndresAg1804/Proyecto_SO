@@ -261,7 +261,7 @@ int main(int argc, char *argv[]){
         
         ///////////////////////////////////////////////////////////////////////////////Imprimo los resultados////////////////////////////////////////////////////////////////////
             
-            //Operciones para obtener los % 
+            //Operaciones para obtener los % 
             float porcentaje=vmrss*100/memoria_total;
             float porcentajeV=vmSize*100/memoriaV_total;
         
