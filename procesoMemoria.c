@@ -16,14 +16,12 @@ int main(int argc, char *argv[]){
             char buffer[256];
             float memoria_total = 0.0f;
 
-            // Leer el archivo línea por línea
+            
             while (fgets(buffer, sizeof(buffer), fp)) {
             // Buscar la línea que contiene "MemTotal"
                 if (strstr(buffer, "MemTotal")) {
-                    // Extraer el valor numérico de la línea
                     float valorT;
                     sscanf(buffer, "%*s%f", &valorT);
-                    // Convertir kilobytes a gigabytes
                     memoria_total = valorT ;
                     break;
                 }
@@ -38,14 +36,12 @@ int main(int argc, char *argv[]){
             char bufferl[256];
             float memoria_libre = 0.0f;
 
-            // Leer el archivo línea por línea
+           
             while (fgets(bufferl, sizeof(bufferl), fpl)) {
-            // Buscar la línea que contiene "MemTotal"
+            // Buscar la línea que contiene "MemAvailable o MemFree "
                 if (strstr(bufferl, "MemAvailable") || strstr(bufferl, "MemFree")) {
-                    // Extraer el valor numérico de la línea
                     float valorL;
                     sscanf(bufferl, "%*s%f", &valorL);
-                    // Convertir kilobytes a gigabytes
                     memoria_libre = valorL;
                     break;
                 }
@@ -69,11 +65,10 @@ int main(int argc, char *argv[]){
                 perror("Error al abrir el archivo status del proceso");
                 exit(EXIT_FAILURE);
             }
-            // Leer el archivo línea por línea
+            
             while (fgets(buffer3, sizeof(buffer3), fp3)) {
-                // Buscar la línea que contiene "VmRSS"
+                // Buscar la línea que contiene "VmSize"
                 if (strstr(buffer3, "VmSize")) {
-                    // Extraer el valor numérico de la línea
                     float valor2;
                     sscanf(buffer3, "%*s%f", &valor2);
                     
@@ -93,14 +88,12 @@ int main(int argc, char *argv[]){
             char bufferV[256];
             float memoriaV_total = 0.0f;
 
-            // Leer el archivo línea por línea
             while (fgets(bufferV, sizeof(bufferV), fpV)) {
-            // Buscar la línea que contiene "MemTotal"
+            // Buscar la línea que contiene "SwapTotal"
             if (strstr(bufferV, "SwapTotal")) {
-                // Extraer el valor numérico de la línea
+                
                 float valorV;
                 sscanf(bufferV, "%*s%f", &valorV);
-                // Convertir kilobytes a gigabytes
                 memoriaV_total = valorV;
                 break;
             }
@@ -115,7 +108,6 @@ int main(int argc, char *argv[]){
     else{
 
     //////////////////////////////////////////////////////////////Hago una lista con todos los PID de los procesos///////////////////////////////////////////////////////////////
-        // Abrir un flujo para leer la salida del comando
         FILE *fp1 = popen("ls /proc | grep '^[0-9]'", "r");
         if (fp1 == NULL) {
             perror("popen");
@@ -136,7 +128,6 @@ int main(int argc, char *argv[]){
             num_pids++;
         }
         
-        // Cerrar el flujo
         pclose(fp1);
 
         
@@ -181,11 +172,11 @@ int main(int argc, char *argv[]){
             char buffer1[256];
             float vmrss = 0.0f;
             
-            // Leer el archivo línea por línea
+            
             while (fgets(buffer1, sizeof(buffer1), fp)) {
                 // Buscar la línea que contiene "VmRSS"
                 if (strstr(buffer1, "VmRSS")) {
-                    // Extraer el valor numérico de la línea
+                    
                     float valor;
                     sscanf(buffer1, "%*s%f", &valor);
                     
@@ -203,11 +194,11 @@ int main(int argc, char *argv[]){
                 perror("Error al abrir el archivo status del proceso");
                 exit(EXIT_FAILURE);
             }
-            // Leer el archivo línea por línea
+            
             while (fgets(buffer3, sizeof(buffer3), fp3)) {
-                // Buscar la línea que contiene "VmRSS"
+                // Buscar la línea que contiene "VmSize"
                 if (strstr(buffer3, "VmSize")) {
-                    // Extraer el valor numérico de la línea
+                    
                     float valor2;
                     sscanf(buffer3, "%*s%f", &valor2);
                     
@@ -228,14 +219,14 @@ int main(int argc, char *argv[]){
             char buffer[256];
             float memoria_total = 0.0f;
 
-            // Leer el archivo línea por línea
+          
             while (fgets(buffer, sizeof(buffer), fpT)) {
             // Buscar la línea que contiene "MemTotal"
             if (strstr(buffer, "MemTotal")) {
-                // Extraer el valor numérico de la línea
+                
                 float valorT;
                 sscanf(buffer, "%*s%f", &valorT);
-                // Convertir kilobytes a gigabytes
+                
                 memoria_total = valorT ;
                 break;
             }
@@ -253,14 +244,14 @@ int main(int argc, char *argv[]){
             char bufferV[256];
             float memoriaV_total = 0.0f;
 
-            // Leer el archivo línea por línea
+            
             while (fgets(bufferV, sizeof(bufferV), fpV)) {
-            // Buscar la línea que contiene "MemTotal"
+            // Buscar la línea que contiene "SwapTotal"
             if (strstr(bufferV, "SwapTotal")) {
-                // Extraer el valor numérico de la línea
+                
                 float valorV;
                 sscanf(bufferV, "%*s%f", &valorV);
-                // Convertir kilobytes a gigabytes
+                
                 memoriaV_total = valorV;
                 break;
             }
@@ -269,6 +260,8 @@ int main(int argc, char *argv[]){
             fclose(fpV);
         
         ///////////////////////////////////////////////////////////////////////////////Imprimo los resultados////////////////////////////////////////////////////////////////////
+            
+            //Operciones para obtener los % 
             float porcentaje=vmrss*100/memoria_total;
             float porcentajeV=vmSize*100/memoriaV_total;
         
